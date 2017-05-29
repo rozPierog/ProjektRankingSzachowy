@@ -18,6 +18,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.piotr.rankingszachowy.DBHelpers.GameDBHelper;
 import com.example.piotr.rankingszachowy.DBHelpers.TournamentDBHelper;
 import com.example.piotr.rankingszachowy.DBHelpers.UserDBHelper;
 import com.example.piotr.rankingszachowy.R;
@@ -33,6 +34,7 @@ public class SearchFragment extends Fragment {
     SearchView searchView;
     UserDBHelper userDBHelper;
     TournamentDBHelper tournamentDBHelper;
+    GameDBHelper gameDBHelper;
     TableLayout table;
     TableRow row;
     TextView tv;
@@ -48,6 +50,7 @@ public class SearchFragment extends Fragment {
 
         tournamentDBHelper = new TournamentDBHelper(getActivity());
         userDBHelper = new UserDBHelper(getActivity());
+        gameDBHelper = new GameDBHelper(getActivity());
 
 
         searchView = (SearchView) view.findViewById(R.id.searchView);
@@ -105,7 +108,36 @@ public class SearchFragment extends Fragment {
                         }
                         break;
                     case 1:
-                        //@TODO: Szukanie Games
+                        result = gameDBHelper.getSpecificData(query);
+                        if (result.getCount() == 0) {
+                            Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
+                        } else {
+                            while (result.moveToNext()) {
+                                row = new TableRow(getActivity());
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(1));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(2));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(3));
+                                row.addView(tv);
+
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(4));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(5));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(7));
+                                row.addView(tv);
+
+                                table.addView(row);
+
+                            }
+                        }
                         break;
                     case 2:
                         result = tournamentDBHelper.getSpecificData(query);
@@ -146,7 +178,35 @@ public class SearchFragment extends Fragment {
                         } else {
                             while (result.moveToNext()) {
                                 row = new TableRow(getActivity());
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(1));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(2));
+                                row.addView(tv);
 
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(3));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(4));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(5));
+                                row.addView(tv);
+                                table.addView(row);
+
+
+                            }
+                        }
+                        break;
+                    case 1:
+                        result = gameDBHelper.getSpecificData(newText);
+                        if (result.getCount() == 0) {
+                            Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
+                        } else {
+                            while (result.moveToNext()) {
+                                row = new TableRow(getActivity());
                                 tv = new TextView(getActivity());
                                 tv.setText(result.getString(1));
                                 row.addView(tv);
@@ -156,13 +216,22 @@ public class SearchFragment extends Fragment {
                                 tv = new TextView(getActivity());
                                 tv.setText(result.getString(3));
                                 row.addView(tv);
+
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(4));
+                                row.addView(tv);
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(5));
+                                row.addView(tv);
+
+                                tv = new TextView(getActivity());
+                                tv.setText(result.getString(7));
+                                row.addView(tv);
+
                                 table.addView(row);
 
                             }
                         }
-                        break;
-                    case 1:
-                        //@TODO: Szukanie Games
                         break;
                     case 2:
                         result = tournamentDBHelper.getSpecificData(newText);
