@@ -10,18 +10,18 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Marcin Omelan on 29.05.2017.
  */
 
-public class UserDBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "Users.db";
-    public static final String TABLE_NAME = "users_table";
-    public static final String ID = "ID";
-    public static final String USERNAME = "USERNAME";
-    public static final String RANK = "RANK";
-    public static final String LAST_PLAYED = "LAST_PLAYED";
-    public static final String PLAYING_SINCE = "PLAYING_SINCE";
-    public static final String AGE = "AGE";
+class UserDBHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "Users.db";
+    private static final String TABLE_NAME = "users_table";
+    private static final String ID = "ID";
+    private static final String USERNAME = "USERNAME";
+    private static final String RANK = "RANK";
+    private static final String LAST_PLAYED = "LAST_PLAYED";
+    private static final String PLAYING_SINCE = "PLAYING_SINCE";
+    private static final String AGE = "AGE";
 
 
-    public UserDBHelper(Context context) {
+    UserDBHelper(Context context) {
         super(context, DATABASE_NAME, null, 2);
 
     }
@@ -42,13 +42,12 @@ public class UserDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public Cursor getAllData() {
+    Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor result = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        return result;
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
-    public boolean insertData(String username, String rank, String lastPlayed, String playingSince,
+    boolean insertData(String username, String rank, String lastPlayed, String playingSince,
                               String age) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -58,9 +57,6 @@ public class UserDBHelper extends SQLiteOpenHelper {
         contentValues.put(PLAYING_SINCE, playingSince);
         contentValues.put(AGE, age);
         long result = db.insert(TABLE_NAME, null, contentValues);
-        if (result == -1)
-            return false;
-        else
-            return true;
+        return result != -1;
     }
 }
