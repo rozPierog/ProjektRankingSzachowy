@@ -1,4 +1,4 @@
-package com.example.piotr.rankingszachowy;
+package com.example.piotr.rankingszachowy.Fragments;
 
 import android.app.Fragment;
 import android.graphics.Color;
@@ -14,6 +14,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+
+import com.example.piotr.rankingszachowy.R;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -2,11 +2,11 @@ package com.example.piotr.rankingszachowy;
 
 import android.util.ArrayMap;
 
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
+import com.example.piotr.rankingszachowy.Models.GameModel;
+import com.example.piotr.rankingszachowy.Models.PlayerModel;
+import com.example.piotr.rankingszachowy.Models.TournamentModel;
+
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 /**

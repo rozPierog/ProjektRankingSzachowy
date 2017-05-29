@@ -1,4 +1,4 @@
-package com.example.piotr.rankingszachowy;
+package com.example.piotr.rankingszachowy.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.example.piotr.rankingszachowy.R;
 
 /**
  * Created by Piotr on 02.04.2017.

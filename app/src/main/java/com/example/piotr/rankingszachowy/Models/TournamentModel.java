@@ -1,10 +1,9 @@
-package com.example.piotr.rankingszachowy;
+package com.example.piotr.rankingszachowy.Models;
 
 import android.util.ArrayMap;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Dictionary;
 import java.util.List;
 
 /**

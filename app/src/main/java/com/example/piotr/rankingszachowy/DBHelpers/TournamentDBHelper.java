@@ -1,4 +1,4 @@
-package com.example.piotr.rankingszachowy;
+package com.example.piotr.rankingszachowy.DBHelpers;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,7 +19,7 @@ public class TournamentDBHelper extends SQLiteOpenHelper {
     private static final String STARTS_AT = "STARTS_AT";
 
 
-    TournamentDBHelper(Context context) {
+    public TournamentDBHelper(Context context) {
         super(context, DATABASE_NAME, null, 2);
 
     }
@@ -39,12 +39,12 @@ public class TournamentDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    Cursor getAllData() {
+    public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
-    boolean insertData(String name, String description, String starts_at) {
+    public boolean insertData(String name, String description, String starts_at) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(NAME, name);

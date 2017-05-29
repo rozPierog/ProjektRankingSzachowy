@@ -3,14 +3,17 @@ package com.example.piotr.rankingszachowy;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.ArrayMap;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.piotr.rankingszachowy.Fragments.AddGameFragment;
+import com.example.piotr.rankingszachowy.Fragments.CurrentTournamentsFragment;
+import com.example.piotr.rankingszachowy.Fragments.PlayerProfileFragment;
+import com.example.piotr.rankingszachowy.Fragments.RecentGamesFragment;
+import com.example.piotr.rankingszachowy.Fragments.SearchFragment;
 
 
 public class MainActivity extends AppCompatActivity {
