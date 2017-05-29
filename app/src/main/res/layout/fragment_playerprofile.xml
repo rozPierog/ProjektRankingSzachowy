@@ -161,40 +161,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp" />
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/achivements_title_playerProfile"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TableLayout
-                android:id="@+id/tblAchivementsPlayerProfile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/gamesHistory_playerProfile_title"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TableLayout
-                android:id="@+id/tblGamesHistoryPlayerProfile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

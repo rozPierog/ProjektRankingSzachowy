@@ -100,8 +100,8 @@ public class PlayerProfileFragment extends Fragment {
 
     private void CreateTables(View view){
 
-        TableLayout tblAchievements = (TableLayout) view.findViewById(R.id.tblAchivementsPlayerProfile);
-        TableLayout tblHistory = (TableLayout) view.findViewById(R.id.tblGamesHistoryPlayerProfile);
+//        TableLayout tblAchievements = (TableLayout) view.findViewById(R.id.tblAchivementsPlayerProfile);
+//        TableLayout tblHistory = (TableLayout) view.findViewById(R.id.tblGamesHistoryPlayerProfile);
 
         TableRow tbrHeader = new TableRow(getActivity());
 
@@ -115,8 +115,8 @@ public class PlayerProfileFragment extends Fragment {
         tv.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tv);
 
-        tblAchievements.addView(tbrHeader);
-        tblAchievements.setStretchAllColumns(true);
+//        tblAchievements.addView(tbrHeader);
+//        tblAchievements.setStretchAllColumns(true);
 
         tbrHeader = new TableRow(getActivity());
 
@@ -136,11 +136,11 @@ public class PlayerProfileFragment extends Fragment {
         tv.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tv);
 
-        tblAchievements.addView(tbrHeader);
-        tblAchievements.setStretchAllColumns(true);
+//        tblAchievements.addView(tbrHeader);
+//        tblAchievements.setStretchAllColumns(true);
 
 
-        AddContent(tblAchievements, tblHistory);
+//        AddContent(tblAchievements, tblHistory);
     }
 
     //Used for filling tables with crap

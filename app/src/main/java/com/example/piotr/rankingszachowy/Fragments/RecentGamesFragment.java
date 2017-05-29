@@ -12,6 +12,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.piotr.rankingszachowy.DBHelpers.GameDBHelper;
+import com.example.piotr.rankingszachowy.DBHelpers.TournamentDBHelper;
 import com.example.piotr.rankingszachowy.DBHelpers.UserDBHelper;
 import com.example.piotr.rankingszachowy.R;
 
@@ -24,6 +26,8 @@ import java.util.Random;
 public class RecentGamesFragment extends Fragment {
 
     UserDBHelper userDBHelper;
+    GameDBHelper gameDBHelper;
+    TournamentDBHelper tournamentDBHelper;
 
     private void CreateTables(View view){
 
@@ -76,32 +80,28 @@ public class RecentGamesFragment extends Fragment {
         TableRow row;
         TextView tv;
         Random rng = new Random();
-        Cursor res = userDBHelper.getAllData();
+        Cursor resU = userDBHelper.getAllData();
+        Cursor resT = tournamentDBHelper.getAllData();
+        Cursor resG = gameDBHelper.getAllData();
 
-        while(res.moveToNext()) {
+        while(resU.moveToNext()) {
             row = new TableRow(getActivity());
 
             tv = new TextView(getActivity());
-            tv.setText(res.getString(1));
+            tv.setText(resU.getString(1));
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText("Row " + ": " + rng.nextInt(300));
+            if(resT.moveToNext()) {
+                tv.setText(resT.getString(1));
+            }else
+                tv.setText(" ");
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText(res.getString(3));
+            tv.setText(resU.getString(3));
             row.addView(tv);
 
             table.addView(row);
 
-            tv = new TextView(getActivity());
-            row = new TableRow(getActivity());
-            tv.setText("Row " + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + ": " + rng.nextInt(300));
-            row.addView(tv);
-
-            table2.addView(row);
         }
     }
 
@@ -111,6 +111,8 @@ public class RecentGamesFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recentgames, container, false);
 
         userDBHelper = new UserDBHelper(getActivity());
+        tournamentDBHelper = new TournamentDBHelper(getActivity());
+        gameDBHelper = new GameDBHelper(getActivity());
         CreateTables(view);
 
 

@@ -11,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class TournamentDBHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "Tournament.db";
+    private static final String DATABASE_NAME = "Chesss.db";
     private static final String TABLE_NAME = "tournaments_table";
     private static final String ID = "ID";
     private static final String NAME = "NAME";
@@ -20,7 +20,7 @@ public class TournamentDBHelper extends SQLiteOpenHelper {
 
 
     public TournamentDBHelper(Context context) {
-        super(context, DATABASE_NAME, null, 2);
+        super(context, DATABASE_NAME, null, 3);
 
     }
 

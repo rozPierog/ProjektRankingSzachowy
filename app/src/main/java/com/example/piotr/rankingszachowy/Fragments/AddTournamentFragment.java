@@ -43,7 +43,7 @@ public class AddTournamentFragment extends Fragment {
         etName = (EditText) view.findViewById(R.id.editText4);
         etDesc = (EditText) view.findViewById(R.id.editText5);
         etStarts = (EditText) view.findViewById(R.id.editText7);
-        CreateTables(view);
+//        CreateTables(view);
 
         Button btnConfirm = (Button) view.findViewById(R.id.btnConfirmTournament);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -74,28 +74,28 @@ public class AddTournamentFragment extends Fragment {
         return view;
     }
 
-    private void CreateTables(View view){
-
-        TableLayout tblInvites = (TableLayout) view.findViewById(R.id.tblPlayerInvitesCreateTournament);
-
-        //Setting up Open Tournaments Rows
-        TableRow tbrHeader = new TableRow(getActivity());
-
-        TextView tv = new TextView(getActivity());
-        tv.setText(view.getResources().getString(R.string.playerInvited_header));
-        tv.setBackgroundColor(Color.LTGRAY);
-        tbrHeader.addView(tv);
-
-        tv = new TextView(getActivity());
-        tv.setText(view.getResources().getString(R.string.playerConfirmed_header_createTournament));
-        tv.setBackgroundColor(Color.LTGRAY);
-        tbrHeader.addView(tv);
-
-        tblInvites.addView(tbrHeader);
-        tblInvites.setStretchAllColumns(true);
-
-        AddContent(tblInvites);
-    }
+//    private void CreateTables(View view){
+//
+//        TableLayout tblInvites = (TableLayout) view.findViewById(R.id.tblPlayerInvitesCreateTournament);
+//
+//        //Setting up Open Tournaments Rows
+//        TableRow tbrHeader = new TableRow(getActivity());
+//
+//        TextView tv = new TextView(getActivity());
+//        tv.setText(view.getResources().getString(R.string.playerInvited_header));
+//        tv.setBackgroundColor(Color.LTGRAY);
+//        tbrHeader.addView(tv);
+//
+//        tv = new TextView(getActivity());
+//        tv.setText(view.getResources().getString(R.string.playerConfirmed_header_createTournament));
+//        tv.setBackgroundColor(Color.LTGRAY);
+//        tbrHeader.addView(tv);
+//
+//        tblInvites.addView(tbrHeader);
+//        tblInvites.setStretchAllColumns(true);
+//
+//        AddContent(tblInvites);
+//    }
 
     //Used for filling tables with crap
     private void AddContent(TableLayout table){
