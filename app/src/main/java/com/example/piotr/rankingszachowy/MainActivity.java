@@ -12,9 +12,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.function.Predicate;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+
+
         RecentGamesFragment recentGamesFragment = new RecentGamesFragment();
 
         FragmentManager fm = getFragmentManager();
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.fragmentContainer, recentGamesFragment);
         fragmentTransaction.commit();
 
-        btnHome = (ImageButton)findViewById(R.id.btnHome);
+        btnHome = (ImageButton) findViewById(R.id.btnHome);
         btnHome.setBackground(getDrawable(R.color.colorButtonActive));
         lastActiveButton = btnHome;
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnTournaments = (ImageButton)findViewById(R.id.btnTournaments);
+        btnTournaments = (ImageButton) findViewById(R.id.btnTournaments);
         btnTournaments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnAddGame = (ImageButton)findViewById(R.id.btnAddGame);
+        btnAddGame = (ImageButton) findViewById(R.id.btnAddGame);
         btnAddGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnPlayerProfile = (ImageButton)findViewById(R.id.btnProfile);
+        btnPlayerProfile = (ImageButton) findViewById(R.id.btnProfile);
         btnPlayerProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnSearch = (ImageButton)findViewById(R.id.btnSearch);
+        btnSearch = (ImageButton) findViewById(R.id.btnSearch);
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getFragmentManager().getBackStackEntryCount() > 0){
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();

@@ -1,21 +1,19 @@
 package com.example.piotr.rankingszachowy;
 
 import android.app.Fragment;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -30,6 +28,10 @@ public class PlayerProfileFragment extends Fragment {
     private EditText etUsername;
     private EditText etAge;
     private EditText etRank;
+    private EditText etLastPlayed;
+    private EditText etPlayingSince;
+    UserDBHelper userDB;
+
     //private LinearLayout linEditImage;
 
 
@@ -38,11 +40,15 @@ public class PlayerProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_playerprofile, container, false);
 
+        userDB = new UserDBHelper(getActivity());
         etUsername = (EditText) view.findViewById(R.id.etUsername);
         etAge = (EditText) view.findViewById(R.id.etAge);
         etRank = (EditText) view.findViewById(R.id.etRank);
+        etLastPlayed = (EditText) view.findViewById(R.id.etLastPlayed);
+        etPlayingSince = (EditText) view.findViewById(R.id.etPlayingSince);
         //linEditImage = (LinearLayout) view.findViewById(R.id.linEditImage);
         setEditMode(false);
+        getAll();
 
         ImageButton btnEdit = (ImageButton) view.findViewById(R.id.btnEditProfile);
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +56,17 @@ public class PlayerProfileFragment extends Fragment {
             public void onClick(View v) {
 
                 setEditMode(!isEditMode);
+                if(!isEditMode){
+                    boolean isInserted = userDB.insertData(etUsername.getText().toString(),
+                                                            etRank.getText().toString(),
+                                                            etLastPlayed.getText().toString(),
+                                                            etPlayingSince.getText().toString(),
+                                                            etAge.getText().toString());
+                    if (isInserted)
+                        Toast.makeText(getActivity(),"Added to database",Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getActivity(),"Derp to database",Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
@@ -59,6 +76,29 @@ public class PlayerProfileFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void getAll() {
+        Cursor res = userDB.getAllData();
+        if(res.getCount() == 0){
+            Toast.makeText(getActivity(),"No records in database", Toast.LENGTH_SHORT).show();
+        }else {
+            StringBuffer buffer = new StringBuffer();
+            while (res.moveToNext()) {
+//                buffer.append("Id: "+ res.getString(0) + "\n");
+//                buffer.append("Username: "+ res.getString(1) + "\n");
+//                buffer.append("Rank: "+ res.getString(2) + "\n");
+//                buffer.append("Last played: "+ res.getString(3) + "\n");
+//                buffer.append("Playing since: "+ res.getString(4) + "\n");
+//                buffer.append("Age: "+ res.getString(5) + "\n");
+                etUsername.setText(res.getString(1));
+                etAge.setText(res.getString(5));
+                etRank.setText(res.getString(2));
+                etLastPlayed.setText(res.getString(3));
+                etPlayingSince.setText(res.getString(4));
+
+            }
+        }
     }
 
     private void CreateTables(View view){
@@ -145,20 +185,20 @@ public class PlayerProfileFragment extends Fragment {
 
         isEditMode = editMode;
 
-        etUsername.setFocusable(isEditMode);
-        etUsername.setClickable(isEditMode);
-
-        etRank.setFocusable(isEditMode);
-        etRank.setClickable(isEditMode);
-
-        etAge.setFocusable(isEditMode);
-        etAge.setClickable(isEditMode);
+//        etUsername.setFocusable(isEditMode);
+//        etUsername.setClickable(isEditMode);
+//
+//        etRank.setFocusable(isEditMode);
+//        etRank.setClickable(isEditMode);
+//
+//        etAge.setFocusable(isEditMode);
+//        etAge.setClickable(isEditMode);
 //        if(isEditMode){
 //            linEditImage.setVisibility(View.VISIBLE);
 //        } else {
 //            linEditImage.setVisibility(View.GONE);
 //        }
 
-        etUsername.setClickable(isEditMode);
+//        etUsername.setClickable(isEditMode);
     }
 }
