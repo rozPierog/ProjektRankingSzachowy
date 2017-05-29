@@ -44,6 +44,11 @@ public class TournamentDBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
+    public Cursor getSpecificData(String s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + NAME +" LIKE '"+ s+"%'", null);
+    }
+
     public boolean insertData(String name, String description, String starts_at) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();

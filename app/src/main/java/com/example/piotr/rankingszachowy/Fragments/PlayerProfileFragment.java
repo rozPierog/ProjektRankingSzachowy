@@ -88,12 +88,6 @@ public class PlayerProfileFragment extends Fragment {
         }else {
             StringBuffer buffer = new StringBuffer();
             while (res.moveToNext()) {
-//                buffer.append("Id: "+ res.getString(0) + "\n");
-//                buffer.append("Username: "+ res.getString(1) + "\n");
-//                buffer.append("Rank: "+ res.getString(2) + "\n");
-//                buffer.append("Last played: "+ res.getString(3) + "\n");
-//                buffer.append("Playing since: "+ res.getString(4) + "\n");
-//                buffer.append("Age: "+ res.getString(5) + "\n");
                 etUsername.setText(res.getString(1));
                 etAge.setText(res.getString(5));
                 etRank.setText(res.getString(2));

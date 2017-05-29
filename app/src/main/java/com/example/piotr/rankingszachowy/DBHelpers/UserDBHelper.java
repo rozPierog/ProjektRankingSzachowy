@@ -47,6 +47,11 @@ public class UserDBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
+    public Cursor getSpecificData(String s) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + USERNAME +" LIKE '"+ s+"%'", null);
+    }
+
     public boolean insertData(String username, String rank, String lastPlayed, String playingSince,
                               String age) {
         SQLiteDatabase db = this.getWritableDatabase();
