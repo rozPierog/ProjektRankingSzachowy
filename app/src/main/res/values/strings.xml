@@ -52,4 +52,5 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <array name="SearchOptions"><item>Players</item><item>Games</item><item>Tournaments</item></array>
+    <array name="GameResults"><item>Win</item><item>Lose</item></array>
 </resources>
