@@ -2,6 +2,7 @@ package com.example.piotr.rankingszachowy;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.TabHost;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -24,13 +26,14 @@ public class CurrentTournamentsFragment extends Fragment {
 
 
     TabHost host;
+    TournamentDBHelper tournamentDBHelper;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_currenttournaments, container, false);
-
+        tournamentDBHelper = new TournamentDBHelper(getActivity());
 
         host = (TabHost) view.findViewById(R.id.tabHost);
         host.setup();
@@ -154,38 +157,32 @@ public class CurrentTournamentsFragment extends Fragment {
         TableRow row;
         TextView tv;
         Random rng = new Random();
+        String users = "";
+        Cursor res = tournamentDBHelper.getAllData();
+        UserDBHelper userDBHelper = new UserDBHelper(getActivity());
+        Cursor resU = userDBHelper.getAllData();
+        if(res.getCount() == 0){
+            Toast.makeText(getActivity(),"No records in database", Toast.LENGTH_SHORT).show();
+        }else {
+            StringBuffer buffer = new StringBuffer();
+            while (res.moveToNext()) {
+                row = new TableRow(getActivity());
 
-        for (int i = 0; i < 15; i++) {
-            row = new TableRow(getActivity());
+                tv = new TextView(getActivity());
+                tv.setText(res.getString(1));
+                row.addView(tv);
+                tv = new TextView(getActivity());
+                while(resU.moveToNext())
+                    users += resU.getString(1) + " ";
+                tv.setText(users);
+                row.addView(tv);
+                tv = new TextView(getActivity());
+                tv.setText(res.getString(3));
+                row.addView(tv);
 
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
+                table.addView(row);
 
-            table.addView(row);
-
-
-            row = new TableRow(getActivity());
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-
-            table2.addView(row);
+            }
         }
     }
 }

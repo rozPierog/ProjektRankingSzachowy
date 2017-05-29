@@ -10,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -22,6 +24,10 @@ import java.util.Random;
 
 public class AddTournamentFragment extends Fragment {
 
+    TournamentDBHelper tournamentDBHelper;
+    EditText etName;
+    EditText etDesc;
+    EditText etStarts;
 
 
     @Nullable
@@ -30,20 +36,36 @@ public class AddTournamentFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_addtournament, container, false);
 
+        tournamentDBHelper = new TournamentDBHelper(getActivity());
+        etName = (EditText) view.findViewById(R.id.editText4);
+        etDesc = (EditText) view.findViewById(R.id.editText5);
+        etStarts = (EditText) view.findViewById(R.id.editText7);
         CreateTables(view);
 
         Button btnConfirm = (Button) view.findViewById(R.id.btnConfirmTournament);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                Fragment tournamentsFragment = new CurrentTournamentsFragment();
 
-                transaction.replace(R.id.fragmentContainer, tournamentsFragment);
+                boolean isInserted = tournamentDBHelper.insertData(etName.getText().toString(),
+                        etDesc.getText().toString(),
+                        etStarts.getText().toString());
+                if (isInserted) {
+                    Toast.makeText(getActivity(), "Added to database", Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                transaction.commit();
+                    Fragment tournamentsFragment = new CurrentTournamentsFragment();
+
+                    transaction.replace(R.id.fragmentContainer, tournamentsFragment);
+
+                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    transaction.commit();
+                }
+                else
+                    Toast.makeText(getActivity(),"Derp to database",Toast.LENGTH_SHORT).show();
+
+
             }
         });
         return view;

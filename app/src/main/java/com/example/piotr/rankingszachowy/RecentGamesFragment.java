@@ -1,6 +1,7 @@
 package com.example.piotr.rankingszachowy;
 
 import android.app.Fragment;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ import java.util.Random;
 
 public class RecentGamesFragment extends Fragment {
 
+    UserDBHelper userDBHelper;
 
     private void CreateTables(View view){
 
@@ -73,28 +75,29 @@ public class RecentGamesFragment extends Fragment {
         TableRow row;
         TextView tv;
         Random rng = new Random();
+        Cursor res = userDBHelper.getAllData();
 
-        for (int i = 0; i < 5; i++) {
+        while(res.moveToNext()) {
             row = new TableRow(getActivity());
 
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText(res.getString(1));
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText("Row " + ": " + rng.nextInt(300));
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText(res.getString(3));
             row.addView(tv);
 
             table.addView(row);
 
             tv = new TextView(getActivity());
             row = new TableRow(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText("Row " + ": " + rng.nextInt(300));
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText("Row " + ": " + rng.nextInt(300));
             row.addView(tv);
 
             table2.addView(row);
@@ -104,10 +107,12 @@ public class RecentGamesFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_recentgames, container, false);
 
+        userDBHelper = new UserDBHelper(getActivity());
         CreateTables(view);
+
+
 
 
         return view;

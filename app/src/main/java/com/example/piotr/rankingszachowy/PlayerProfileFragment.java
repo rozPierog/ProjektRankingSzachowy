@@ -182,7 +182,7 @@ public class PlayerProfileFragment extends Fragment {
     }
 
     public void setEditMode(Boolean editMode) {
-
+        //@TODO: nonEditable mode
         isEditMode = editMode;
 
 //        etUsername.setFocusable(isEditMode);
