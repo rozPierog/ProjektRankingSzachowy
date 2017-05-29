@@ -8,19 +8,18 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/colorPrimary">
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal">
 
                 <Space
                     android:layout_width="match_parent"
@@ -38,11 +37,11 @@
 
                 <Button
                     android:id="@+id/btnConfirmTournament"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/btn_confirm"
                     android:layout_marginRight="5dp"
-                    android:background="@drawable/custom_button"/>
+                    android:text="@string/btn_confirm" />
 
             </LinearLayout>
 
@@ -75,7 +74,7 @@
                         android:ems="10"
                         android:inputType="textPersonName"
                         android:text="Name"
-                        android:textColor="@color/primaryTextDark"/>
+                        android:textColor="@color/primaryTextDark" />
 
                     <EditText
                         android:id="@+id/editText2"
@@ -99,8 +98,8 @@
                 android:layout_height="wrap_content"
                 android:text="@string/description_title_fragment"
                 android:textAlignment="center"
-                android:textSize="18sp"
-                android:textColor="@color/primaryTextDark"/>
+                android:textColor="@color/primaryTextDark"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editText5"
@@ -124,8 +123,7 @@
                     android:layout_width="159dp"
                     android:layout_height="match_parent"
                     android:text="@string/playersCap_addtournament_fragment"
-                    android:textColor="@color/primaryTextDark"
-                    />
+                    android:textColor="@color/primaryTextDark" />
 
                 <EditText
                     android:id="@+id/editText6"
@@ -134,8 +132,7 @@
                     android:ems="10"
                     android:hint="10"
                     android:inputType="numberSigned"
-                    android:textColor="@color/primaryTextDark"
-                    />
+                    android:textColor="@color/primaryTextDark" />
 
             </LinearLayout>
 
@@ -153,15 +150,14 @@
                 android:allowUndo="false"
                 android:checked="true"
                 android:text="@string/tournamentType_open_fragment"
-                android:textColor="@color/primaryTextDark"
-                />
+                android:textColor="@color/primaryTextDark" />
 
             <RadioButton
                 android:id="@+id/radioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tournamentType_closed_fragment"
-                android:textColor="@color/primaryTextDark"/>
+                android:textColor="@color/primaryTextDark" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,7 +168,7 @@
                     android:layout_width="159dp"
                     android:layout_height="match_parent"
                     android:text="@string/startsAt_title_fragment"
-                    android:textColor="@color/primaryTextDark"/>
+                    android:textColor="@color/primaryTextDark" />
 
                 <EditText
                     android:id="@+id/editText7"
@@ -180,7 +176,7 @@
                     android:layout_height="match_parent"
                     android:ems="10"
                     android:inputType="date"
-                    android:textColor="@color/primaryTextDark"/>
+                    android:textColor="@color/primaryTextDark" />
 
             </LinearLayout>
 
@@ -195,6 +191,7 @@
 
             <Button
                 android:id="@+id/button2"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/invite_button_createTournament_fragment"
@@ -205,8 +202,8 @@
                 android:id="@+id/tblPlayerInvitesCreateTournament"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:textColor="@color/primaryTextDark"
-                android:background="@color/lightPrimary">
+                android:background="@color/lightPrimary"
+                android:textColor="@color/primaryTextDark">
 
             </TableLayout>
 
