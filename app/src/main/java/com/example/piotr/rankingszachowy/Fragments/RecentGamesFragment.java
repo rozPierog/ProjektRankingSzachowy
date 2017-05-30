@@ -1,6 +1,7 @@
-package com.example.piotr.rankingszachowy;
+package com.example.piotr.rankingszachowy.Fragments;
 
 import android.app.Fragment;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,7 +12,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.piotr.rankingszachowy.DBHelpers.GameDBHelper;
+import com.example.piotr.rankingszachowy.DBHelpers.TournamentDBHelper;
+import com.example.piotr.rankingszachowy.DBHelpers.UserDBHelper;
+import com.example.piotr.rankingszachowy.R;
 
 import java.util.Random;
 
@@ -21,6 +25,9 @@ import java.util.Random;
 
 public class RecentGamesFragment extends Fragment {
 
+    UserDBHelper userDBHelper;
+    GameDBHelper gameDBHelper;
+    TournamentDBHelper tournamentDBHelper;
 
     private void CreateTables(View view){
 
@@ -73,41 +80,42 @@ public class RecentGamesFragment extends Fragment {
         TableRow row;
         TextView tv;
         Random rng = new Random();
+        Cursor resU = userDBHelper.getAllData();
+        Cursor resT = tournamentDBHelper.getAllData();
+        Cursor resG = gameDBHelper.getAllData();
 
-        for (int i = 0; i < 5; i++) {
+        while(resU.moveToNext()) {
             row = new TableRow(getActivity());
 
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText(resU.getString(1));
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            if(resT.moveToNext()) {
+                tv.setText(resT.getString(1));
+            }else
+                tv.setText(" ");
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
+            tv.setText(resU.getString(3));
             row.addView(tv);
 
             table.addView(row);
 
-            tv = new TextView(getActivity());
-            row = new TableRow(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-
-            table2.addView(row);
         }
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_recentgames, container, false);
 
+        userDBHelper = new UserDBHelper(getActivity());
+        tournamentDBHelper = new TournamentDBHelper(getActivity());
+        gameDBHelper = new GameDBHelper(getActivity());
         CreateTables(view);
+
+
 
 
         return view;

@@ -1,4 +1,4 @@
-package com.example.piotr.rankingszachowy;
+package com.example.piotr.rankingszachowy.Models;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -35,7 +35,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvTournament"
+                    android:id="@+id/tvName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -44,7 +44,7 @@
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerTournament"
+                    android:id="@+id/spinnerName"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
@@ -57,14 +57,12 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editText"
+                <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="@string/nameOp_placeholder_fragment"
-                    android:inputType="textPersonName"
+                    android:text="@string/nameOp_placeholder_fragment"
                     android:textColor="@color/primaryTextDark"
                     android:textSize="18sp" />
 
@@ -103,7 +101,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:textColor="@color/primaryTextDark" />
+                    android:textColor="@color/primaryTextDark"
+                    android:entries="@array/GameResults"/>
 
             </LinearLayout>
 
@@ -129,12 +128,16 @@
                     android:textColor="@color/primaryTextDark"
                     android:textSize="18sp" />
 
-                <Spinner
-                    android:id="@+id/spinnerAddGameDate"
+                <EditText
+                    android:id="@+id/editText8"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
-                    android:textColor="@color/primaryTextDark" />
+                    android:ems="10"
+                    android:hint="DD-MM-YYYY"
+                    android:inputType="textPersonName"
+                    android:textColor="@color/primaryTextDark"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
@@ -149,21 +152,22 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tvUsername"
+                    android:id="@+id/tvTor"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="@string/userName_placeholder"
+                    android:text="@string/tournamentHeader_fragment"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="false"
                     android:textColor="@color/primaryTextDark"
                     android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinnerPlayer"
+                    android:id="@+id/spinnerTor"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:textColor="@color/primaryTextDark" />
-
             </LinearLayout>
 
             <Space
@@ -201,19 +205,13 @@
 
                 <Button
                     android:id="@+id/btnAddMoveGame"
+                    style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/addMove_addgame_fragment"
                     android:textColor="@color/primaryTextDark" />
 
-                <Button
-                    android:id="@+id/btnRemoveMoveGame"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="@string/removeMove_addgame_fragment"
-                    android:textColor="@color/primaryTextDark" />
             </LinearLayout>
 
             <TableLayout
