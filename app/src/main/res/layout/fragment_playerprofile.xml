@@ -17,6 +17,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
                 android:orientation="horizontal">
 
                 <TextView
@@ -34,7 +35,31 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:visibility="visible"
                     app:srcCompat="@drawable/ic_create_black_48dp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="128dp"
+                    android:layout_height="wrap_content"
+                    android:text="Player" />
+
+                <Spinner
+                    android:id="@+id/spinnerPlayer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -62,6 +87,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/userName_placeholder" />
 
+                        <!--<AutoCompleteTextView-->
+                        <!--android:id="@+id/etUsername"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:ems="10"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:inputType="textPersonName"></AutoCompleteTextView>-->
                         <EditText
                             android:id="@+id/etUsername"
                             android:layout_width="wrap_content"
@@ -150,50 +182,11 @@
 
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
+                    android:layout_width="138dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     app:srcCompat="@mipmap/ic_char" />
 
             </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/achivements_title_playerProfile"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TableLayout
-                android:id="@+id/tblAchivementsPlayerProfile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/gamesHistory_playerProfile_title"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TableLayout
-                android:id="@+id/tblGamesHistoryPlayerProfile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </TableLayout>
 
         </LinearLayout>
     </ScrollView>

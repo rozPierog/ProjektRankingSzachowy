@@ -18,7 +18,6 @@ import com.example.piotr.rankingszachowy.Fragments.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private ImageButton btnHome;
     private ImageButton btnTournaments;
     private ImageButton btnAddGame;

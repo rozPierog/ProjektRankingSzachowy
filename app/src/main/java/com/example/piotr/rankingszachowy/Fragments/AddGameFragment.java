@@ -1,5 +1,6 @@
 package com.example.piotr.rankingszachowy.Fragments;
 
+import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -32,7 +34,9 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -60,6 +64,9 @@ public class AddGameFragment extends Fragment {
     private Date matchDate;
     private ArrayList<String> movesList;
     private String tournamentID;
+    private Calendar myCalendar;
+    private DatePickerDialog.OnDateSetListener date;
+
 
     ArrayList<String> nicks;
     ArrayList<String> tours;
@@ -102,7 +109,7 @@ public class AddGameFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_addgame, container, false);
+        final View view = inflater.inflate(R.layout.fragment_addgame, container, false);
 
         nicks = new ArrayList<>();
         movesList = new ArrayList<>();
@@ -166,11 +173,48 @@ public class AddGameFragment extends Fragment {
             }
         });
 
+        myCalendar = Calendar.getInstance();
+
+        date = new DatePickerDialog.OnDateSetListener() {
+
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+
+        };
+
+        etDate.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                new DatePickerDialog(view.getContext(), date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+
+
 
         CreateTables(view);
 
 
         return view;
+    }
+
+    private void updateLabel() {
+
+        String myFormat = "dd-MM-yyyy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
+
+        etDate.setText(sdf.format(myCalendar.getTime()));
     }
 
     private void addMove() {

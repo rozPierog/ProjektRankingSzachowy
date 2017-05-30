@@ -13,7 +13,7 @@ import org.json.JSONObject;
  */
 
 public class GameDBHelper extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "Games.db";
+    private static final String DATABASE_NAME = "Chessss.db";
     private static final String TABLE_NAME = "gamess_table";
     private static final String ID = "ID";
     private static final String WHITE_PLAYER = "WHITE_PLAYER";
@@ -56,6 +56,7 @@ public class GameDBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + WHITE_PLAYER +" LIKE '"+ s+"%'", null);
     }
+
 
     public boolean insertData(String white_player, String white_points, String black_player,
                               String black_points, String date, String move_list,

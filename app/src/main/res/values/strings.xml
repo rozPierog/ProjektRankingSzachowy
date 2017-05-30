@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Ranking Szachowy</string>
     <string name="newsTitle_recentGamesFragment">News</string>
-    <string name="news_recentGamesFragment">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque.      Duis vulputate commodo lectus, ac blandit elit tincidunt id.      Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis magna. Aenean velit odio, elementum in tempus ut, vehicula eu diam. Pellentesque rhoncus aliquam mattis. Ut vulputate eros sed felis sodales nec vulputate justo hendrerit. Vivamus varius pretium ligula, a aliquam odio euismod sit amet. Quisque laoreet sem sit amet orci ullamcorper at ultricies metus viverra. Pellentesque arcu mauris, malesuada quis ornare accumsan, blandit sed diam.</string>
+    <string name="news_recentGamesFragment">30-05-2017 - Start Rankingu Szachowego.\n\n29-05-2017 - Pierwszy Turniej.\n\n28-05-2017 - Start Rankingu Szachowego.\n\n</string>
     <string name="playersHeader_fragment">Players</string>
     <string name="tournamentHeader_fragment">Tournament</string>
     <string name="dateHeader_fragment">Date</string>
@@ -17,7 +17,7 @@
     <string name="addGameTitle_fragment">Add Game</string>
     <string name="sideWhite">White</string>
     <string name="sideBlack">Black</string>
-    <string name="winResult_text_addgame_fragment">Game Result</string>
+    <string name="winResult_text_addgame_fragment">Side Won</string>
     <string name="moveWhite_addgame_fragment">Move White</string>
     <string name="moveBlack_addgame_fragment">Move Black</string>
     <string name="addMove_addgame_fragment">Add</string>
@@ -26,6 +26,8 @@
     <string name="btn_confirm">Confirm</string>
     <string name="nameOp_placeholder_fragment">Opponent Name</string>
     <string name="userName_placeholder">Username</string>
+    <string name="whitePlayer_placeholder">White Player</string>
+    <string name="blackPlayer_placeholder">Black Player</string>
     <string name="createTournament_btn">Create New</string>
     <string name="createTournament_title_fragment">Create Tournament</string>
     <string name="description_title_fragment">Description</string>
@@ -52,5 +54,5 @@
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
     <array name="SearchOptions"><item>Players</item><item>Games</item><item>Tournaments</item></array>
-    <array name="GameResults"><item>Win</item><item>Lose</item></array>
+    <array name="GameResults"><item>White</item><item>Draw</item><item>Black</item></array>
 </resources>

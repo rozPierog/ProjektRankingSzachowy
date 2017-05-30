@@ -39,23 +39,23 @@ public class CurrentTournamentsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_currenttournaments, container, false);
         tournamentDBHelper = new TournamentDBHelper(getActivity());
 
-        host = (TabHost) view.findViewById(R.id.tabHost);
-        host.setup();
-
-        TabHost.TabSpec spec = host.newTabSpec(view.getResources().getString(R.string.open_tournaments_tab));
-        spec.setContent(R.id.tab_open);
-        spec.setIndicator(view.getResources().getString(R.string.open_tournaments_tab));
-        host.addTab(spec);
-
-        spec = host.newTabSpec(view.getResources().getString(R.string.closed_tournaments_tab));
-        spec.setContent(R.id.tab_closed);
-        spec.setIndicator(view.getResources().getString(R.string.closed_tournaments_tab));
-        host.addTab(spec);
-
-        spec = host.newTabSpec(view.getResources().getString(R.string.finished_tournaments_tab));
-        spec.setContent(R.id.tab_finished);
-        spec.setIndicator(view.getResources().getString(R.string.finished_tournaments_tab));
-        host.addTab(spec);
+//        host = (TabHost) view.findViewById(R.id.tabHost);
+//        host.setup();
+//
+//        TabHost.TabSpec spec = host.newTabSpec(view.getResources().getString(R.string.open_tournaments_tab));
+//        spec.setContent(R.id.tab_open);
+//        spec.setIndicator(view.getResources().getString(R.string.open_tournaments_tab));
+//        host.addTab(spec);
+//
+//        spec = host.newTabSpec(view.getResources().getString(R.string.closed_tournaments_tab));
+//        spec.setContent(R.id.tab_closed);
+//        spec.setIndicator(view.getResources().getString(R.string.closed_tournaments_tab));
+//        host.addTab(spec);
+//
+//        spec = host.newTabSpec(view.getResources().getString(R.string.finished_tournaments_tab));
+//        spec.setContent(R.id.tab_finished);
+//        spec.setIndicator(view.getResources().getString(R.string.finished_tournaments_tab));
+//        host.addTab(spec);
 
         CreateTables(view);
 
@@ -81,8 +81,8 @@ public class CurrentTournamentsFragment extends Fragment {
     private void CreateTables(View view){
 
         TableLayout tblOpen = (TableLayout) view.findViewById(R.id.tblOpenTournaments);
-        TableLayout tblClosed = (TableLayout) view.findViewById(R.id.tblClosedTournaments);
-        TableLayout tblFinished = (TableLayout) view.findViewById(R.id.tblFinishedTournaments);
+//        TableLayout tblClosed = (TableLayout) view.findViewById(R.id.tblClosedTournaments);
+//        TableLayout tblFinished = (TableLayout) view.findViewById(R.id.tblFinishedTournaments);
 
         //Setting up Open Tournaments Rows
         TableRow tbrHeader = new TableRow(getActivity());
@@ -123,8 +123,8 @@ public class CurrentTournamentsFragment extends Fragment {
         tv.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tv);
 
-        tblClosed.addView(tbrHeader);
-        tblClosed.setStretchAllColumns(true);
+//        tblClosed.addView(tbrHeader);
+//        tblClosed.setStretchAllColumns(true);
 
         //Setting up Finished Tournaments Rows
         tbrHeader = new TableRow(getActivity());
@@ -149,10 +149,10 @@ public class CurrentTournamentsFragment extends Fragment {
         tv.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tv);
 
-        tblFinished.addView(tbrHeader);
-        tblFinished.setStretchAllColumns(true);
-
-        AddContent(tblOpen, tblFinished);
+//        tblFinished.addView(tbrHeader);
+//        tblFinished.setStretchAllColumns(true);
+        //tblOpen, tblfinished
+        AddContent(tblOpen, null);
     }
 
     //Used for filling tables with crap
