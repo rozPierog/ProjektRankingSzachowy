@@ -15,7 +15,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:background="@color/colorPrimary">
 
                 <Space
                     android:layout_width="match_parent"
@@ -45,112 +46,32 @@
                 android:layout_height="30dp"
                 android:layout_weight="1" />
 
-            <SearchView
+            <LinearLayout
+                android:id="@+id/tab_open"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            </SearchView>
-
-            <TabHost
-                android:id="@+id/tabHost"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                    <TabWidget
-                        android:id="@android:id/tabs"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                    <FrameLayout
-                        android:id="@android:id/tabcontent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <LinearLayout
-                            android:id="@+id/tab_open"
+                        <TableLayout
+                            android:id="@+id/tblOpenTournaments"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_height="match_parent">
 
-                            <ScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                        </TableLayout>
+                    </LinearLayout>
+                </ScrollView>
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
+            </LinearLayout>
 
-                                    <TableLayout
-                                        android:id="@+id/tblOpenTournaments"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                    </TableLayout>
-                                </LinearLayout>
-                            </ScrollView>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tab_closed"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TableLayout
-                                        android:id="@+id/tblClosedTournaments"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                    </TableLayout>
-                                </LinearLayout>
-                            </ScrollView>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/tab_finished"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
-
-                            <ScrollView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="vertical">
-
-                                    <TableLayout
-                                        android:id="@+id/tblFinishedTournaments"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
-
-                                    </TableLayout>
-                                </LinearLayout>
-                            </ScrollView>
-
-                        </LinearLayout>
-                    </FrameLayout>
-                </LinearLayout>
-            </TabHost>
         </LinearLayout>
     </ScrollView>
 

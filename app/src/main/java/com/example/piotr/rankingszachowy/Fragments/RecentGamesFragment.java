@@ -84,24 +84,29 @@ public class RecentGamesFragment extends Fragment {
         Cursor resT = tournamentDBHelper.getAllData();
         Cursor resG = gameDBHelper.getAllData();
 
-        while(resU.moveToNext()) {
+        while(resG.moveToNext()) {
             row = new TableRow(getActivity());
-
             tv = new TextView(getActivity());
-            tv.setText(resU.getString(1));
+            tv.setText(resG.getString(1) +"\n vs \n" + resG.getString(2));
             row.addView(tv);
             tv = new TextView(getActivity());
-            if(resT.moveToNext()) {
-                tv.setText(resT.getString(1));
-            }else
-                tv.setText(" ");
+            tv.setText(resG.getString(7));
             row.addView(tv);
             tv = new TextView(getActivity());
-            tv.setText(resU.getString(3));
+            tv.setText(resG.getString(5));
             row.addView(tv);
-
             table.addView(row);
+        }
 
+        while(resT.moveToNext()) {
+            row = new TableRow(getActivity());
+            tv = new TextView(getActivity());
+            tv.setText(resT.getString(1));
+            row.addView(tv);
+            tv = new TextView(getActivity());
+            tv.setText(resT.getString(3));
+            row.addView(tv);
+            table2.addView(row);
         }
     }
 

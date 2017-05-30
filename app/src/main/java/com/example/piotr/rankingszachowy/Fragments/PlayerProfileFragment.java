@@ -8,8 +8,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import com.example.piotr.rankingszachowy.DBHelpers.UserDBHelper;
 import com.example.piotr.rankingszachowy.R;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -33,7 +37,11 @@ public class PlayerProfileFragment extends Fragment {
     private EditText etRank;
     private EditText etLastPlayed;
     private EditText etPlayingSince;
+    private Cursor result;
+    private Spinner spinnerPlayer;
     UserDBHelper userDB;
+
+    ArrayList<String> nicks;
 
     //private LinearLayout linEditImage;
 
@@ -49,8 +57,28 @@ public class PlayerProfileFragment extends Fragment {
         etRank = (EditText) view.findViewById(R.id.etRank);
         etLastPlayed = (EditText) view.findViewById(R.id.etLastPlayed);
         etPlayingSince = (EditText) view.findViewById(R.id.etPlayingSince);
-        //linEditImage = (LinearLayout) view.findViewById(R.id.linEditImage);
-        setEditMode(false);
+
+        spinnerPlayer = (Spinner) view.findViewById(R.id.spinnerPlayer);
+
+        nicks = new ArrayList<>();
+        getNicks();
+
+        ArrayAdapter adapter2 = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, nicks);
+        spinnerPlayer.setAdapter(adapter2);
+
+        spinnerPlayer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                setUser( (String)spinnerPlayer.getSelectedItem());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        setEditMode(true);
         getAll();
 
         ImageButton btnEdit = (ImageButton) view.findViewById(R.id.btnEditProfile);
@@ -58,7 +86,7 @@ public class PlayerProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                setEditMode(!isEditMode);
+                //setEditMode(!isEditMode);
                 if(!isEditMode){
                     boolean isInserted = userDB.insertData(etUsername.getText().toString(),
                                                             etRank.getText().toString(),
@@ -79,6 +107,31 @@ public class PlayerProfileFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void getNicks() {
+        result = userDB.getAllData();
+        if (result.getCount() == 0) {
+            Toast.makeText(getActivity(), "No records of users in database", Toast.LENGTH_SHORT).show();
+        } else {
+            while (result.moveToNext()) {
+                nicks.add(result.getString(1));
+            }
+        }
+    }
+
+    private void setUser(String username){
+        result = userDB.getSpecificData(username);
+        if (result.getCount() == 0) {
+            Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
+        } else {
+            result.moveToNext();
+            etUsername.setText(result.getString(1));
+            etRank.setText(result.getString(2));
+            etLastPlayed.setText(result.getString(3));
+            etPlayingSince.setText(result.getString(4));
+            etAge.setText(result.getString(5));
+        }
     }
 
     private void getAll() {
@@ -182,20 +235,20 @@ public class PlayerProfileFragment extends Fragment {
         //@TODO: nonEditable mode
         isEditMode = editMode;
 
-//        etUsername.setFocusable(isEditMode);
-//        etUsername.setClickable(isEditMode);
-//
-//        etRank.setFocusable(isEditMode);
-//        etRank.setClickable(isEditMode);
-//
-//        etAge.setFocusable(isEditMode);
-//        etAge.setClickable(isEditMode);
-//        if(isEditMode){
-//            linEditImage.setVisibility(View.VISIBLE);
-//        } else {
-//            linEditImage.setVisibility(View.GONE);
-//        }
+        etUsername.setFocusable(isEditMode);
+        etUsername.setClickable(isEditMode);
 
-//        etUsername.setClickable(isEditMode);
+        etRank.setFocusable(isEditMode);
+        etRank.setClickable(isEditMode);
+
+        etPlayingSince.setFocusable(isEditMode);
+        etPlayingSince.setClickable(isEditMode);
+
+        etLastPlayed.setFocusable(isEditMode);
+        etLastPlayed.setClickable(isEditMode);
+
+        etAge.setFocusable(isEditMode);
+        etAge.setClickable(isEditMode);
+
     }
 }

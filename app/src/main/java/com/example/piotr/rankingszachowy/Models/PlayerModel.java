@@ -16,9 +16,6 @@ public class PlayerModel {
     public Date PlayingSince;
     public int Age;
 
-
-
-
     public PlayerModel(String username, int rank, Date last, Date since, int age){
 
         this.Username = username;

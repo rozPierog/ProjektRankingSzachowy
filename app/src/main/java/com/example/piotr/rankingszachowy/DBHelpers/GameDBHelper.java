@@ -54,8 +54,9 @@ public class GameDBHelper extends SQLiteOpenHelper {
 
     public Cursor getSpecificData(String s) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME +" JOIN " + " WHERE " + WHITE_PLAYER +" LIKE '"+ s+"%'", null);
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + WHITE_PLAYER +" LIKE '"+ s+"%'", null);
     }
+
 
     public boolean insertData(String white_player, String white_points, String black_player,
                               String black_points, String date, String move_list,
