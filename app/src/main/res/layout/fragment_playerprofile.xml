@@ -36,7 +36,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:visibility="visible"
-                    app:srcCompat="@drawable/ic_create_black_48dp" />
+                    app:srcCompat="@drawable/ic_create" />
 
             </LinearLayout>
 
@@ -100,7 +100,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            />
                     </TableRow>
 
                     <TableRow
