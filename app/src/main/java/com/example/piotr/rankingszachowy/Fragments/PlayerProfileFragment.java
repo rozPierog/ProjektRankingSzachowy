@@ -40,6 +40,7 @@ public class PlayerProfileFragment extends Fragment {
     private Cursor result;
     private Spinner spinnerPlayer;
     UserDBHelper userDB;
+    ImageButton btnEdit;
 
     ArrayList<String> nicks;
 
@@ -63,13 +64,16 @@ public class PlayerProfileFragment extends Fragment {
         nicks = new ArrayList<>();
         getNicks();
 
-        ArrayAdapter adapter2 = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, nicks);
+        final ArrayAdapter adapter2 = new ArrayAdapter(getActivity(), R.layout.support_simple_spinner_dropdown_item, nicks);
         spinnerPlayer.setAdapter(adapter2);
 
         spinnerPlayer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                setUser( (String)spinnerPlayer.getSelectedItem());
+                if (position == 0) {
+                    clearEditText();
+                }
+                setUser((String) spinnerPlayer.getSelectedItem());
             }
 
             @Override
@@ -78,25 +82,29 @@ public class PlayerProfileFragment extends Fragment {
             }
         });
 
-        setEditMode(true);
+
         getAll();
 
-        ImageButton btnEdit = (ImageButton) view.findViewById(R.id.btnEditProfile);
+        btnEdit = (ImageButton) view.findViewById(R.id.btnEditProfile);
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //setEditMode(!isEditMode);
-                if(!isEditMode){
+                isEditMode = !isEditMode;
+                setEditMode(isEditMode);
+                if (!isEditMode) {
                     boolean isInserted = userDB.insertData(etUsername.getText().toString(),
-                                                            etRank.getText().toString(),
-                                                            etLastPlayed.getText().toString(),
-                                                            etPlayingSince.getText().toString(),
-                                                            etAge.getText().toString());
-                    if (isInserted)
-                        Toast.makeText(getActivity(),"Added to database",Toast.LENGTH_SHORT).show();
+                            etRank.getText().toString(),
+                            etLastPlayed.getText().toString(),
+                            etPlayingSince.getText().toString(),
+                            etAge.getText().toString());
+                    if (isInserted) {
+                        Toast.makeText(getActivity(), "Added to database", Toast.LENGTH_SHORT).show();
+                        getNicks();
+                        adapter2.notifyDataSetChanged();
+                        spinnerPlayer.setSelection(nicks.size());
+                    }
                     else
-                        Toast.makeText(getActivity(),"Derp to database",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Derp to database", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -109,8 +117,18 @@ public class PlayerProfileFragment extends Fragment {
         return view;
     }
 
+    private void clearEditText() {
+        etUsername.setText("");
+        etAge.setText("");
+        etRank.setText("");
+        etLastPlayed.setText("");
+        etPlayingSince.setText("");
+    }
+
     private void getNicks() {
         result = userDB.getAllData();
+        nicks.clear();
+        nicks.add("+ Add Player +");
         if (result.getCount() == 0) {
             Toast.makeText(getActivity(), "No records of users in database", Toast.LENGTH_SHORT).show();
         } else {
@@ -120,7 +138,7 @@ public class PlayerProfileFragment extends Fragment {
         }
     }
 
-    private void setUser(String username){
+    private void setUser(String username) {
         result = userDB.getSpecificData(username);
         if (result.getCount() == 0) {
             Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
@@ -136,9 +154,9 @@ public class PlayerProfileFragment extends Fragment {
 
     private void getAll() {
         Cursor res = userDB.getAllData();
-        if(res.getCount() == 0){
-            Toast.makeText(getActivity(),"No records in database", Toast.LENGTH_SHORT).show();
-        }else {
+        if (res.getCount() == 0) {
+            Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
+        } else {
             StringBuffer buffer = new StringBuffer();
             while (res.moveToNext()) {
                 etUsername.setText(res.getString(1));
@@ -151,7 +169,7 @@ public class PlayerProfileFragment extends Fragment {
         }
     }
 
-    private void CreateTables(View view){
+    private void CreateTables(View view) {
 
 //        TableLayout tblAchievements = (TableLayout) view.findViewById(R.id.tblAchivementsPlayerProfile);
 //        TableLayout tblHistory = (TableLayout) view.findViewById(R.id.tblGamesHistoryPlayerProfile);
@@ -196,43 +214,8 @@ public class PlayerProfileFragment extends Fragment {
 //        AddContent(tblAchievements, tblHistory);
     }
 
-    //Used for filling tables with crap
-    private void AddContent(TableLayout table, TableLayout table2){
-
-        TableRow row;
-        TextView tv;
-        Random rng = new Random();
-
-        for (int i = 0; i < 15; i++) {
-            row = new TableRow(getActivity());
-
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-
-            table.addView(row);
-
-            row = new TableRow(getActivity());
-
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-            tv = new TextView(getActivity());
-            tv.setText("Row " + i + ": " + rng.nextInt(300));
-            row.addView(tv);
-
-            table2.addView(row);
-        }
-    }
-
     public void setEditMode(Boolean editMode) {
-        //@TODO: nonEditable mode
+
         isEditMode = editMode;
 
         etUsername.setFocusable(isEditMode);
@@ -249,6 +232,10 @@ public class PlayerProfileFragment extends Fragment {
 
         etAge.setFocusable(isEditMode);
         etAge.setClickable(isEditMode);
+        if(isEditMode)
+            btnEdit.setImageResource(R.drawable.ic_save);
+        else
+            btnEdit.setImageResource(R.drawable.ic_create);
 
     }
 }
