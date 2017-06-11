@@ -200,11 +200,7 @@ public class AddGameFragment extends Fragment {
             }
         });
 
-
-
-
         CreateTables(view);
-
 
         return view;
     }
@@ -282,7 +278,7 @@ public class AddGameFragment extends Fragment {
                 }
                 boolean isInserted = gameDBHelper.insertData(sideSpinnerPlayer.getSelectedItem().toString(),
                         String.valueOf(whitePoints), sideSpinnerOpponent.getSelectedItem().toString(),
-                        String.valueOf(blackPoints), etDate.getText().toString(), json.toString(), spinnerTour.getSelectedItem().toString());
+                        spinnerResult.getSelectedItem().toString(), etDate.getText().toString(), json.toString(), spinnerTour.getSelectedItem().toString());
                 if (isInserted) {
                     Toast.makeText(getActivity(), "Added to database", Toast.LENGTH_SHORT).show();
                 }

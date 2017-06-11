@@ -120,7 +120,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            />
                     </TableRow>
 
                     <TableRow
@@ -139,7 +140,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            />
                     </TableRow>
 
                     <TableRow
@@ -158,7 +160,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            />
                     </TableRow>
 
                     <TableRow
@@ -177,7 +180,8 @@
                             android:layout_height="wrap_content"
                             android:ems="10"
                             android:inputType="textPersonName"
-                            android:textSize="14sp" />
+                            android:textSize="14sp"
+                            />
                     </TableRow>
                 </TableLayout>
 
