@@ -160,7 +160,6 @@ public class CurrentTournamentsFragment extends Fragment {
 
         TableRow row;
         TextView tv;
-        Random rng = new Random();
         String users = "";
         Cursor res = tournamentDBHelper.getAllData();
         UserDBHelper userDBHelper = new UserDBHelper(getActivity());
@@ -168,7 +167,6 @@ public class CurrentTournamentsFragment extends Fragment {
         if(res.getCount() == 0){
             Toast.makeText(getActivity(),"No records in database", Toast.LENGTH_SHORT).show();
         }else {
-            StringBuffer buffer = new StringBuffer();
             while (res.moveToNext()) {
                 row = new TableRow(getActivity());
 

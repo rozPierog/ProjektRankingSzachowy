@@ -1,10 +1,20 @@
 package com.example.piotr.rankingszachowy.Fragments;
 
+import android.Manifest;
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +28,11 @@ import android.widget.Toast;
 import com.example.piotr.rankingszachowy.DBHelpers.UserDBHelper;
 import com.example.piotr.rankingszachowy.R;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Random;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by Piotr on 02.04.2017.
@@ -34,6 +48,8 @@ public class PlayerProfileFragment extends Fragment {
     private EditText etLastPlayed;
     private EditText etPlayingSince;
     UserDBHelper userDB;
+    private Integer RESULT_LOAD_IMG = 1;
+    private ImageButton bttnProfilePic;
 
     //private LinearLayout linEditImage;
 
@@ -49,11 +65,22 @@ public class PlayerProfileFragment extends Fragment {
         etRank = (EditText) view.findViewById(R.id.etRank);
         etLastPlayed = (EditText) view.findViewById(R.id.etLastPlayed);
         etPlayingSince = (EditText) view.findViewById(R.id.etPlayingSince);
+        bttnProfilePic = (ImageButton) view.findViewById(R.id.bttnProfilePicture);
         //linEditImage = (LinearLayout) view.findViewById(R.id.linEditImage);
         setEditMode(false);
         getAll();
 
+
+
         ImageButton btnEdit = (ImageButton) view.findViewById(R.id.btnEditProfile);
+        bttnProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                isStoragePermissionGranted();
+                //profileOnClick();
+            }
+        });
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +107,68 @@ public class PlayerProfileFragment extends Fragment {
 
         return view;
     }
+
+
+
+    public  boolean isStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(getActivity(),android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                //Log.v(TAG,"Permission is granted");
+                return true;
+            } else {
+
+                //Log.v(TAG,"Permission is revoked");
+                ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }
+        else { //permission is automatically granted on sdk<23 upon installation
+            //Log.v(TAG,"Permission is granted");
+            return true;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED){
+            //Log.v(TAG,"Permission: "+permissions[0]+ "was "+grantResults[0]);
+            profileOnClick();
+        }
+    }
+
+
+
+
+    public void profileOnClick(){
+        Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+        photoPickerIntent.setType("image/*");
+        startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+        Toast.makeText(getActivity(),"YOLO",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+
+
+        if (resultCode == RESULT_OK) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                bttnProfilePic.setImageBitmap(selectedImage);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+
+        }else {
+            Toast.makeText(getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     private void getAll() {
         Cursor res = userDB.getAllData();

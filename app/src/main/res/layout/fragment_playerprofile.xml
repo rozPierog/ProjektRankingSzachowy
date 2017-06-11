@@ -148,11 +148,13 @@
                     </TableRow>
                 </TableLayout>
 
-                <ImageView
-                    android:id="@+id/imageView2"
+                <ImageButton
+                    android:id="@+id/bttnProfilePicture"
+                    style="@style/Widget.AppCompat.ImageButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:scaleType="fitXY"
                     app:srcCompat="@mipmap/ic_char" />
 
             </LinearLayout>
