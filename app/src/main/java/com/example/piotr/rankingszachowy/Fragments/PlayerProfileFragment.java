@@ -89,9 +89,9 @@ public class PlayerProfileFragment extends Fragment {
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                isEditMode = !isEditMode;
-                setEditMode(isEditMode);
-                if (!isEditMode) {
+
+                setEditMode(!isEditMode);
+                if (isEditMode) {
                     boolean isInserted = userDB.insertData(etUsername.getText().toString(),
                             etRank.getText().toString(),
                             etLastPlayed.getText().toString(),
@@ -106,7 +106,7 @@ public class PlayerProfileFragment extends Fragment {
                     else
                         Toast.makeText(getActivity(), "Derp to database", Toast.LENGTH_SHORT).show();
                 }
-
+                isEditMode = !isEditMode;
             }
         });
 
@@ -155,7 +155,7 @@ public class PlayerProfileFragment extends Fragment {
     private void getAll() {
         Cursor res = userDB.getAllData();
         if (res.getCount() == 0) {
-            Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(), "No records in database", Toast.LENGTH_SHORT).show();
         } else {
             StringBuffer buffer = new StringBuffer();
             while (res.moveToNext()) {
@@ -216,23 +216,21 @@ public class PlayerProfileFragment extends Fragment {
 
     public void setEditMode(Boolean editMode) {
 
-        isEditMode = editMode;
-
-        etUsername.setFocusable(isEditMode);
-        etUsername.setClickable(isEditMode);
-
-        etRank.setFocusable(isEditMode);
-        etRank.setClickable(isEditMode);
-
-        etPlayingSince.setFocusable(isEditMode);
-        etPlayingSince.setClickable(isEditMode);
-
-        etLastPlayed.setFocusable(isEditMode);
-        etLastPlayed.setClickable(isEditMode);
-
-        etAge.setFocusable(isEditMode);
-        etAge.setClickable(isEditMode);
-        if(isEditMode)
+//        etUsername.setFocusable(editMode);
+//        etUsername.setClickable(editMode);
+//
+//        etRank.setFocusable(editMode);
+//        etRank.setClickable(editMode);
+//
+//        etPlayingSince.setFocusable(editMode);
+//        etPlayingSince.setClickable(editMode);
+//
+//        etLastPlayed.setFocusable(editMode);
+//        etLastPlayed.setClickable(editMode);
+//
+//        etAge.setFocusable(editMode);
+//        etAge.setClickable(editMode);
+        if(editMode)
             btnEdit.setImageResource(R.drawable.ic_save);
         else
             btnEdit.setImageResource(R.drawable.ic_create);

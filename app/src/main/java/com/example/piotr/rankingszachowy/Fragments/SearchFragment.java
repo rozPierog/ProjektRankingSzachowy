@@ -150,9 +150,6 @@ public class SearchFragment extends Fragment {
                                 tv.setText(result.getString(1));
                                 row.addView(tv);
                                 tv = new TextView(getActivity());
-                                tv.setText(result.getString(2));
-                                row.addView(tv);
-                                tv = new TextView(getActivity());
                                 tv.setText(result.getString(3));
                                 row.addView(tv);
 
@@ -241,11 +238,9 @@ public class SearchFragment extends Fragment {
                             while (result.moveToNext()) {
                                 row = new TableRow(getActivity());
                                 tv = new TextView(getActivity());
-                                tv.setText(result.getString(1));
+                                tv.setText(result.getString(1) + " ");
                                 row.addView(tv);
-                                tv = new TextView(getActivity());
-                                tv.setText(result.getString(2));
-                                row.addView(tv);
+
                                 tv = new TextView(getActivity());
                                 tv.setText(result.getString(3));
                                 row.addView(tv);

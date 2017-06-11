@@ -93,12 +93,12 @@ public class CurrentTournamentsFragment extends Fragment {
         tbrHeader.addView(tv);
 
         tv = new TextView(getActivity());
-        tv.setText(view.getResources().getString(R.string.playersInvitedHeader_tab));
+        tv.setText("Description");
         tv.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tv);
 
         tv = new TextView(getActivity());
-        tv.setText(view.getResources().getString(R.string.startDateHeader_tab));
+        tv.setText("Start Date");
         tv.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tv);
 
@@ -173,12 +173,13 @@ public class CurrentTournamentsFragment extends Fragment {
                 row = new TableRow(getActivity());
 
                 tv = new TextView(getActivity());
-                tv.setText(res.getString(1));
+                tv.setText(res.getString(1) + " ");
                 row.addView(tv);
                 tv = new TextView(getActivity());
-                while(resU.moveToNext())
-                    users += resU.getString(1) + " ";
-                tv.setText(users);
+
+                tv.setText(res.getString(2) + " ");
+                tv.setSingleLine(false);
+                tv.setMaxLines(5);
                 row.addView(tv);
                 tv = new TextView(getActivity());
                 tv.setText(res.getString(3));

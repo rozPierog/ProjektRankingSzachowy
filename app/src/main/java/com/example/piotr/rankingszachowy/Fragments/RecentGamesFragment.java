@@ -42,6 +42,11 @@ public class RecentGamesFragment extends Fragment {
         tvPlayers.setBackgroundColor(Color.LTGRAY);
         tbrHeader.addView(tvPlayers);
 
+        TextView tvResult = new TextView(getActivity());
+        tvResult.setText("Result");
+        tvResult.setBackgroundColor(Color.LTGRAY);
+        tbrHeader.addView(tvResult);
+
         TextView tvTournament = new TextView(getActivity());
         tvTournament.setText(view.getResources().getString(R.string.tournamentHeader_fragment));
         tvTournament.setBackgroundColor(Color.LTGRAY);
@@ -64,7 +69,7 @@ public class RecentGamesFragment extends Fragment {
         tbrHeader2.addView(tvTournament2);
 
         TextView tvLastGame = new TextView(getActivity());
-        tvLastGame.setText(view.getResources().getString(R.string.lastGameHeader_fragment));
+        tvLastGame.setText("Tournament Starts");
         tvLastGame.setBackgroundColor(Color.LTGRAY);
         tbrHeader2.addView(tvLastGame);
 
@@ -88,6 +93,9 @@ public class RecentGamesFragment extends Fragment {
             row = new TableRow(getActivity());
             tv = new TextView(getActivity());
             tv.setText(resG.getString(1) +"\n vs \n" + resG.getString(2));
+            row.addView(tv);
+            tv = new TextView(getActivity());
+            tv.setText(resG.getString(4 ));
             row.addView(tv);
             tv = new TextView(getActivity());
             tv.setText(resG.getString(7));
